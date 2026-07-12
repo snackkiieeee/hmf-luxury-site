@@ -66,7 +66,9 @@ export default function SimpleInteriorDesign() {
   const backgrounds = [
     "/hero-bg.png", // Your original image
     "/bg-1.png",    // Ensure these exist in your public folder!
-    "/bg-2.png"
+    "/bg-2.png",
+    "/bg-3.png",
+    "/bg-4.jpg"
   ];
   const [currentBg, setCurrentBg] = useState(0);
 
