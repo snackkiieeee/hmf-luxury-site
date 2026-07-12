@@ -64,11 +64,10 @@ export default function SimpleInteriorDesign() {
 
   // --- Background Slider Logic ---
   const backgrounds = [
-    "/hero-bg.png", // Your original image
-    "/bg-1.png",    // Ensure these exist in your public folder!
-    "/bg-2.png",
-    "/bg-3.png"
-  ];
+  "/hero-bg.png",
+  "/bg-1.png",
+  "/bg-3.png" 
+];
   const [currentBg, setCurrentBg] = useState(0);
 
   useEffect(() => {
@@ -152,36 +151,41 @@ export default function SimpleInteriorDesign() {
       </nav>
 
       {/* Hero Section with Slider */}
-      <section className="relative h-[600px] md:h-[700px] overflow-hidden flex items-center justify-center">
-        
-        {/* Animated Backgrounds */}
-        <div className="absolute inset-0 z-0">
-          {backgrounds.map((bg, index) => (
-  <img
-    key={index}
-    src={bg}
-    alt="Background"
-    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-      index === currentBg ? "opacity-100" : "opacity-0"
-    }`}
-  />
-))}
-          <div className="absolute inset-0 bg-black/40"></div>
-        </div>
-        
-        {/* Hero CTA Content */}
-        <div className="container mx-auto px-6 relative z-10 flex flex-col justify-center items-center text-center mt-10">
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 drop-shadow-md">
-            Design That Speaks <br/> <span className="text-[#A6937B]">Your Style</span>
-          </h1>
-          <button 
-            onClick={() => setIsModalOpen(true)}
-            className="bg-[#A6937B] text-white px-8 py-4 font-bold uppercase tracking-widest hover:bg-[#8B7A63] transition-colors rounded shadow-xl"
-          >
-            Get a Free Quote
-          </button>
-        </div>
-      </section>
+<section className="relative h-[600px] md:h-[700px] w-full overflow-hidden flex items-center justify-center bg-black">
+  
+  {/* Animated Backgrounds */}
+  <div className="absolute inset-0 z-0 w-full h-full">
+    {backgrounds.map((bg, index) => (
+      <img
+        key={index}
+        src={bg}
+        alt="Background"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+          index === currentBg ? "opacity-100" : "opacity-0"
+        }`}
+        onError={(e) => {
+          // If an image fails to load, hide it so the next one can show
+          (e.target as HTMLImageElement).style.display = 'none';
+        }}
+      />
+    ))}
+    {/* Dark overlay to make text readable */}
+    <div className="absolute inset-0 bg-black/50 z-10"></div>
+  </div>
+  
+  {/* Hero CTA Content */}
+  <div className="container mx-auto px-6 relative z-20 flex flex-col justify-center items-center text-center">
+    <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 drop-shadow-md">
+      Design That Speaks <br/> <span className="text-[#A6937B]">Your Style</span>
+    </h1>
+    <button 
+      onClick={() => setIsModalOpen(true)}
+      className="bg-[#A6937B] text-white px-8 py-4 font-bold uppercase tracking-widest hover:bg-[#8B7A63] transition-colors rounded shadow-xl"
+    >
+      Get a Free Quote
+    </button>
+  </div>
+</section>
 
       {/* Feature Highlights (Overlapping Hero) */}
       <div className="container mx-auto px-6 relative z-20 -mt-16 hidden md:block">
