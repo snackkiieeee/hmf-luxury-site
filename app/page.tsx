@@ -157,14 +157,15 @@ export default function SimpleInteriorDesign() {
         {/* Animated Backgrounds */}
         <div className="absolute inset-0 z-0">
           {backgrounds.map((bg, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
-                index === currentBg ? "opacity-100" : "opacity-0"
-              }`}
-              style={{ backgroundImage: `url(${bg})` }}
-            />
-          ))}
+  <img
+    key={index}
+    src={bg}
+    alt="Background"
+    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+      index === currentBg ? "opacity-100" : "opacity-0"
+    }`}
+  />
+))}
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
         
